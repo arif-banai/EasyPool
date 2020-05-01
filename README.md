@@ -1,4 +1,4 @@
-#EasyPool
+# EasyPool
 The goal of this API is to make it easy to create a DataSource that utilizes a connection pool in order to
 improve performance among DB related operations. 
 
@@ -15,11 +15,11 @@ which stores implementation specific data required for using a specific DataSour
 I plan on adding support for the supported DataSources (postgres, h2, ...) and to add support for caching.
 I also plan on giving this README some more love later to make this even more dead simple. 
 
-##Quick Start
+## Quick Start
 Check out [IDLogger](https://github.com/arif-banai/IDLogger) to see an example of how to use this API.
 I will update this later to be more helpful.
 
-##Maven
+## Maven
 Add this to your maven dependencies once installed 
 ```xml
 <dependency>
