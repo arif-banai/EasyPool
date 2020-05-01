@@ -11,7 +11,7 @@
 
     <name>EasyPool</name>
 
-    <description>Easily create a DataSource that uses Connection Pooling to improve DB performance and resource usage.</description>
+    <description>Easily create a DataSource that uses Connection Pooling to improve DB performance.</description>
 
     <properties>
         <java.version>1.8</java.version>
