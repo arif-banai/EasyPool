@@ -7,7 +7,7 @@ discovered [HikariCP](https://github.com/brettwooldridge/HikariCP). The choice w
 libraries, which is why I renamed this lib from the imaginative "c3p0-presets" to EasyPool. 
 
 A lot of my projects often tend to interact with a data source, such as a database. I created this lib
-to make it simpler to create such a datasource, as I found myself duplicate code in my projects.
+to make it simpler to create such a datasource, as I found duplicate code in my projects.
 
 The supported data sources are enumerated in [DataSourceType](../src/me/arifbanai/easypool/enums/DataSourceType.java), 
 which stores implementation specific data required for using a specific DataSource.
