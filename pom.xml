@@ -6,19 +6,23 @@
 
     <groupId>me.arifbanai</groupId>
     <artifactId>easypool</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>EasyPool</name>
 
-    <description>Easily create a DataSource that uses Connection Pooling to improve DB performance.</description>
+    <description>Easily create a DataSource utilizing some data storage system, using HikariCP</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <hikaricp.version>3.4.3</hikaricp.version>
+        <hikaricp.version>4.0.1</hikaricp.version>
 
-        <mysql-connector.version>8.0.19</mysql-connector.version>
-        <sqlite-jdbc.version>3.30.1</sqlite-jdbc.version>
+        <mysql-connector.version>8.0.23</mysql-connector.version>
+        <sqlite-jdbc.version>3.34.0</sqlite-jdbc.version>
+
+        <compiler.version>3.8.1</compiler.version>
+        <shade.version>3.2.4</shade.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <src.dir>src</src.dir>
     </properties>
@@ -30,7 +34,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>${compiler.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -39,7 +43,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${shade.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -56,7 +60,7 @@
     </build>
 
     <dependencies>
-        <!-- HikariCP -->
+        <!-- HikariCP https://mvnrepository.com/artifact/com.zaxxer/HikariCP-->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>

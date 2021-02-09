@@ -28,3 +28,9 @@ Add this to your maven dependencies once installed
     <version>1.0</version>
 </dependency>
 ```
+
+**Changelog**
+- 2/9/2021
+    - Added a parameter to DataSourceManager constructors to pass HikariProperties file to the HikariConfig file
+    - Updated dependencies and plugins to the latest versions
+    

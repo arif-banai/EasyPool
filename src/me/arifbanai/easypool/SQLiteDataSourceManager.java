@@ -24,15 +24,14 @@ public class SQLiteDataSourceManager extends DataSourceManager {
      * @param hostPath The path of the parent directory (parent file)
      * @param schemaFileName The name of the .db file that SQLite will use for storage
      */
-    public SQLiteDataSourceManager(String hostPath, String schemaFileName) throws IOException {
+    public SQLiteDataSourceManager(String hikariPropsPath, String hostPath, String schemaFileName) throws IOException {
         File file = new File(hostPath, schemaFileName + ".db");
 
         if (!(file.exists())) {
             file.createNewFile();
         }
 
-        HikariConfig config = new HikariConfig();
-        dsType = DataSourceType.SQLITE;
+        HikariConfig config = new HikariConfig(hikariPropsPath);
 
         config.setDriverClassName(dsType.getDriverClassName());
 
@@ -40,5 +39,6 @@ public class SQLiteDataSourceManager extends DataSourceManager {
         config.setJdbcUrl(url);
 
         ds = new HikariDataSource(config);
+        dsType = DataSourceType.SQLITE;
     }
 }
