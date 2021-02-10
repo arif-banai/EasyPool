@@ -17,7 +17,18 @@ I also plan on giving this README some more love later to make this even more de
 
 ## Quick Start
 Check out [IDLogger](https://github.com/arif-banai/IDLogger) to see an example of how to use this API.
-I will update this later to be more helpful.
+
+A hikari.properties file can be passed to the HikariDataSource created by setting the Java System Property "hikari.configurationFile" to the path of the properties file.
+
+```java
+/*
+ Set location of hikari properties file to System property
+ When HikariConfig default constructor is called, the properties file is loaded
+ see https://github.com/brettwooldridge/HikariCP (ctrl+F system property)
+*/
+String path = getDataFolder().toPath().toString();
+System.setProperty("hikaricp.configurationFile", path + "/hikari.properties");
+```
 
 ## Maven
 Add this to your maven dependencies once installed 
@@ -31,6 +42,5 @@ Add this to your maven dependencies once installed
 
 **Changelog**
 - 2/9/2021
-    - Added a parameter to DataSourceManager constructors to pass HikariProperties file to the HikariConfig file
     - Updated dependencies and plugins to the latest versions
     

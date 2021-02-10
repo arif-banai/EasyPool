@@ -25,8 +25,8 @@ public class MySQLDataSourceManager extends DataSourceManager {
      * @param user Login credential
      * @param password Login credential
      */
-    public MySQLDataSourceManager(String hikariPropsPath, String host, String port, String schema, String user, String password) {
-        HikariConfig config = new HikariConfig(hikariPropsPath);
+    public MySQLDataSourceManager(String host, String port, String schema, String user, String password) {
+        HikariConfig config = new HikariConfig();
 
         config.setDriverClassName(dsType.getDriverClassName());
         config.setUsername(user);
