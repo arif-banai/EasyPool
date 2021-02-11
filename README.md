@@ -20,6 +20,10 @@ Check out [IDLogger](https://github.com/arif-banai/IDLogger) to see an example o
 
 A hikari.properties file can be passed to the HikariDataSource created by setting the Java System Property "hikari.configurationFile" to the path of the properties file.
 
+This must be done before creating the HikariConfig.
+
+
+
 ```java
 /*
  Set location of hikari properties file to System property
@@ -28,6 +32,15 @@ A hikari.properties file can be passed to the HikariDataSource created by settin
 */
 String path = getDataFolder().toPath().toString();
 System.setProperty("hikaricp.configurationFile", path + "/hikari.properties");
+
+HikariConfig config = new HikariConfig();
+/*
+ add some stuff to config
+ or not if 'hikari.properties' has the all details 
+ needed to establish a datasource connection
+ */
+doSomeConfigStuff(...);
+HikariDataSource = new HikariDataSoure(config);
 ```
 
 ## Maven
@@ -43,4 +56,9 @@ Add this to your maven dependencies once installed
 **Changelog**
 - 2/9/2021
     - Updated dependencies and plugins to the latest versions
+  
+- **2/11/2021**
+  - Updated .gitignore and removed ignored files
+  - Removed duplicate .idea/.gitignore file
+  - Updated readme entry about using "hikari.configurationFile" system property
     
