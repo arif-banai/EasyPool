@@ -1,5 +1,8 @@
 package me.arifbanai.easypool.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Enumerates all the supported data sources that can be used.
  *
@@ -13,9 +16,16 @@ public enum DataSourceType {
 
     SQLITE("sqlite", "jdbc:sqlite:", "org.sqlite.JDBC");
 
-    private String dialectName;
-    private String urlPrefix;
-    private String driverClassName;
+    private static final Map<String, DataSourceType> BY_DIALECT = new HashMap<>();
+    private final String dialectName;
+    private final String urlPrefix;
+    private final String driverClassName;
+
+    static {
+        for (DataSourceType dataSourceType : values()) {
+            BY_DIALECT.put(dataSourceType.dialectName, dataSourceType);
+        }
+    }
 
     /**
      * A data source that is supported by this library. Updated as new sources are supported.
@@ -27,6 +37,15 @@ public enum DataSourceType {
         this.dialectName = dialectName;
         this.urlPrefix = urlPrefix;
         this.driverClassName = driverClassName;
+    }
+
+    /**
+     * The dialect string is expected to be an all lowercase version of the enum name
+     * @param dialect the common 'config readable' form of the DataSourceType
+     * @return the DataSourceType referenced by the dialect string
+     */
+    public static DataSourceType matchDialect(String dialect) {
+        return BY_DIALECT.get(dialect.toUpperCase());
     }
 
     /**

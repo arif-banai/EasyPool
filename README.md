@@ -61,4 +61,6 @@ Add this to your maven dependencies once installed
   - Updated .gitignore and removed ignored files
   - Removed duplicate .idea/.gitignore file
   - Updated readme entry about using "hikari.configurationFile" system property
+  - Added dialect-based retrieval method for DataSourceType enum
+ 
     
