@@ -26,6 +26,8 @@ public class MySQLDataSourceManager extends DataSourceManager {
      * @param password Login credential
      */
     public MySQLDataSourceManager(String host, String port, String schema, String user, String password) {
+        dsType = DataSourceType.MYSQL;
+
         HikariConfig config = new HikariConfig();
 
         config.setDriverClassName(dsType.getDriverClassName());
@@ -36,6 +38,5 @@ public class MySQLDataSourceManager extends DataSourceManager {
         config.setJdbcUrl(url);
 
         ds = new HikariDataSource(config);
-        dsType = DataSourceType.MYSQL;
     }
 }

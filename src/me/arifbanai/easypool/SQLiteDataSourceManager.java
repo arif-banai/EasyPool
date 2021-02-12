@@ -25,6 +25,8 @@ public class SQLiteDataSourceManager extends DataSourceManager {
      * @param schemaFileName The name of the .db file that SQLite will use for storage
      */
     public SQLiteDataSourceManager(String hostPath, String schemaFileName) throws IOException {
+        dsType = DataSourceType.SQLITE;
+
         File file = new File(hostPath, schemaFileName + ".db");
 
         if (!(file.exists())) {
@@ -39,6 +41,5 @@ public class SQLiteDataSourceManager extends DataSourceManager {
         config.setJdbcUrl(url);
 
         ds = new HikariDataSource(config);
-        dsType = DataSourceType.SQLITE;
     }
 }

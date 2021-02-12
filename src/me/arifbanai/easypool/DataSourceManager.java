@@ -20,7 +20,6 @@ public abstract class DataSourceManager {
     protected HikariDataSource ds;
     protected DataSourceType dsType;
 
-
     /**
      * <p>Gets a connection from the {@link HikariDataSource}.</p>
      *
