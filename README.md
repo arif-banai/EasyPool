@@ -1,28 +1,14 @@
 # EasyPool
-The goal of this API is to make it easy to create a DataSource that utilizes a connection pool in order to
-improve performance among DB related operations. 
+This library makes it easy to use [HikariCP](https://github.com/brettwooldridge/HikariCP) with different data sources (SQLite, MySQL, postgreSQL, etc.)
 
-I had initially used the [c3p0](https://github.com/swaldman/c3p0) as the Connection Pooling lib powering my applications, but soon
-discovered [HikariCP](https://github.com/brettwooldridge/HikariCP). The choice was clear. It didn't take much to change
-libraries, which is why I renamed this lib from the imaginative "c3p0-presets" to EasyPool. 
-
-A lot of my projects often tend to interact with a data source, such as a database. I created this lib
-to make it simpler to create such a datasource, as I found duplicate code in my projects.
+All the drivers necessary for HikariCP to establish connections to a given data source are included as dependencies. 
 
 The supported data sources are enumerated in [DataSourceType](../src/me/arifbanai/easypool/enums/DataSourceType.java), 
 which stores implementation specific data required for using a specific DataSource.
 
-I plan on adding support for the supported DataSources (postgres, h2, ...) and to add support for caching.
-I also plan on giving this README some more love later to make this even more dead simple. 
-
 ## Quick Start
-Check out [IDLogger](https://github.com/arif-banai/IDLogger) to see an example of how to use this API.
 
-A hikari.properties file can be passed to the HikariDataSource created by setting the Java System Property "hikari.configurationFile" to the path of the properties file.
-
-This must be done before creating the HikariConfig.
-
-
+A hikari.properties file can be passed to the HikariDataSource created by setting the Java System Property "hikari.configurationFile" to the path of the properties file. This must be done _**before**_ initializing a [DataSourceManager](../src/me/arifbanai/easypool/DataSourceManager.java)
 
 ```java
 /*
@@ -30,37 +16,36 @@ This must be done before creating the HikariConfig.
  When HikariConfig default constructor is called, the properties file is loaded
  see https://github.com/brettwooldridge/HikariCP (ctrl+F system property)
 */
-String path = getDataFolder().toPath().toString();
+String path = "path/to/resource";
 System.setProperty("hikaricp.configurationFile", path + "/hikari.properties");
+```
 
-HikariConfig config = new HikariConfig();
-/*
- add some stuff to config
- or not if 'hikari.properties' has the all details 
- needed to establish a datasource connection
- */
-doSomeConfigStuff(...);
-HikariDataSource = new HikariDataSoure(config);
+Simply instantiate a DataSourceManager with some implementing class
+```java
+DataSourceManager dsm = new MySQLDataSourceManager(host, port, schema, user, password);
+// or
+DataSourceManager dsm = new SQLiteDataSourceManager(path, this.getName());
 ```
 
 ## Maven
-Add this to your maven dependencies once installed 
+Build and install to your local repo, then add the dependency
 ```xml
 <dependency>
     <groupId>me.arifbanai</groupId>
     <artifactId>easypool</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
 </dependency>
 ```
 
 **Changelog**
-- 2/9/2021
-    - Updated dependencies and plugins to the latest versions
+- **2/9/2021**
+  - Updated dependencies and plugins to the latest versions
   
 - **2/11/2021**
   - Updated .gitignore and removed ignored files
   - Removed duplicate .idea/.gitignore file
   - Updated readme entry about using "hikari.configurationFile" system property
   - Added dialect-based retrieval method for DataSourceType enum
- 
-    
+
+- **2/13/2021**
+  - Updated README.md
