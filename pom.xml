@@ -6,29 +6,26 @@
 
     <groupId>me.arifbanai</groupId>
     <artifactId>easypool</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
 
     <name>EasyPool</name>
-
     <description>Easily create a DataSource utilizing some data storage system, using HikariCP</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <hikaricp.version>4.0.1</hikaricp.version>
+    <url>https://github.com/arif-banai/EasyPool</url>
 
-        <mysql-connector.version>8.0.23</mysql-connector.version>
-        <sqlite-jdbc.version>3.34.0</sqlite-jdbc.version>
+    <properties>
+        <java.version>16</java.version>
 
         <compiler.version>3.8.1</compiler.version>
         <shade.version>3.2.4</shade.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <src.dir>src</src.dir>
     </properties>
 
     <build>
-        <sourceDirectory>${src.dir}</sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
+        <finalName>${project.name}-${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
             <plugin>
@@ -40,6 +37,27 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <version>${java.version}</version>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -56,30 +74,57 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <finalName>${project.name}-${project.version}</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
-        <!-- HikariCP https://mvnrepository.com/artifact/com.zaxxer/HikariCP-->
+        <!-- HikariCP https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>${hikaricp.version}</version>
+            <version>5.0.0</version>
         </dependency>
 
         <!-- MySQL Connector/J https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector.version}</version>
+            <version>8.0.27</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>${sqlite-jdbc.version}</version>
+            <version>3.36.0.3</version>
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub arif-banai Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/arif-banai/${project.name}</url>
+        </repository>
+    </distributionManagement>
+
 </project>
+
