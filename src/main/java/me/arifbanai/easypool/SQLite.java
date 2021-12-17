@@ -15,7 +15,7 @@ import java.io.IOException;
  * @see DataSourceType
  * @author Arif Banai
  */
-public class SQLiteDataSourceManager extends DataSourceManager {
+public class SQLite extends DataSourceManager {
 
     /**
      * <p>Configures the {@link DataSourceManager} for use with {@link org.sqlite.JDBC}.</p>
@@ -24,7 +24,7 @@ public class SQLiteDataSourceManager extends DataSourceManager {
      * @param hostPath The path of the parent directory (parent file)
      * @param schemaFileName The name of the .db file that SQLite will use for storage
      */
-    public SQLiteDataSourceManager(String hostPath, String schemaFileName) throws IOException {
+    public SQLite(String hostPath, String schemaFileName) throws IOException {
         dsType = DataSourceType.SQLITE;
 
         File file = new File(hostPath, schemaFileName + ".db");

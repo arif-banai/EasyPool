@@ -1,0 +1,8 @@
+usingSqlite: false
+connectionDetails:
+  host: localhost
+  port: 3306
+  schema: minecraft
+  username: user
+  password: pass
+  dialect: mysql

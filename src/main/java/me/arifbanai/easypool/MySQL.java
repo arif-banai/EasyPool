@@ -13,7 +13,7 @@ import me.arifbanai.easypool.enums.DataSourceType;
  * @see DataSourceType
  * @author Arif Banai
  */
-public class MySQLDataSourceManager extends DataSourceManager {
+public class MySQL extends DataSourceManager {
 
     /**
      * <p>Configures the {@link DataSourceManager} for use with {@link Driver}.</p>
@@ -25,7 +25,7 @@ public class MySQLDataSourceManager extends DataSourceManager {
      * @param user Login credential
      * @param password Login credential
      */
-    public MySQLDataSourceManager(String host, String port, String schema, String user, String password) {
+    public MySQL(String host, String port, String schema, String user, String password) {
         dsType = DataSourceType.MYSQL;
 
         HikariConfig config = new HikariConfig();

@@ -1,8 +1,5 @@
 package me.arifbanai.easypool.enums;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Enumerates all the supported data sources that can be used.
  *
@@ -14,18 +11,15 @@ public enum DataSourceType {
     MYSQL("mysql", "jdbc:mysql://",
             "com.mysql.cj.jdbc.Driver"),
 
-    SQLITE("sqlite", "jdbc:sqlite:", "org.sqlite.JDBC");
+    SQLITE("sqlite", "jdbc:sqlite:",
+            "org.sqlite.JDBC"),
 
-    private static final Map<String, DataSourceType> BY_DIALECT = new HashMap<>();
+    MARIADB("mariadb", "jdbc:mariadb://",
+                    "org.mariadb.jdbc.Driver");
+
     private final String dialectName;
     private final String urlPrefix;
     private final String driverClassName;
-
-    static {
-        for (DataSourceType dataSourceType : values()) {
-            BY_DIALECT.put(dataSourceType.dialectName, dataSourceType);
-        }
-    }
 
     /**
      * A data source that is supported by this library. Updated as new sources are supported.
@@ -45,7 +39,7 @@ public enum DataSourceType {
      * @return the DataSourceType referenced by the dialect string
      */
     public static DataSourceType matchDialect(String dialect) {
-        return BY_DIALECT.get(dialect.toUpperCase());
+        return DataSourceType.valueOf(dialect.toUpperCase().trim());
     }
 
     /**
@@ -53,6 +47,16 @@ public enum DataSourceType {
      */
     public String getDialectName() {
         return dialectName;
+    }
+
+
+    /**
+     * @return The config-friendly String of some particular SQL-based database
+     * @see #getDialectName()
+     */
+    @Override
+    public String toString() {
+        return getDialectName();
     }
 
     /**
