@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class MySQLDataSourceManagerTest extends DataSourceManager {
+class MySQLEasyPoolTest extends EasyPool {
 
     /**
      * Pay attention not to leave credentials in here or in config.yml when committing
@@ -26,13 +26,12 @@ class MySQLDataSourceManagerTest extends DataSourceManager {
         InputStream is = this.getClass().getClassLoader()
                         .getResourceAsStream("config.yml");
 
+
         Config config = yaml.load(is);
 
-        ConnectionDetails connDeets = config.getConnectionDetails();
-
-        MySQL mysql = new MySQL(connDeets.getHost(),
-                connDeets.getPort(), connDeets.getSchema(),
-                connDeets.getUsername(), connDeets.getPassword());
+        MySQL mysql = new MySQL(config.getHost(),
+                config.getPort(), config.getSchema(),
+                config.getUsername(), config.getPassword());
 
         assertTrue(mysql.ds.isRunning());
         mysql.close();
@@ -48,7 +47,7 @@ class MySQLDataSourceManagerTest extends DataSourceManager {
                 .getResourceAsStream("config.yml");
 
         Config config = yaml.load(is);
-        return !config.getUsingSqlite();
+        return config.getDialect().equals("mysql");
     }
 
 }

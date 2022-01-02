@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * @see DataSourceType
  * @author Arif Banai
  */
-public abstract class DataSourceManager {
+public abstract class EasyPool {
 
     protected HikariDataSource ds;
     protected DataSourceType dsType;

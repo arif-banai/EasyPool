@@ -6,17 +6,17 @@ import com.zaxxer.hikari.HikariDataSource;
 import me.arifbanai.easypool.enums.DataSourceType;
 
 /**
- * <p>Configures {@link DataSourceManager} to use a MySQL instance.</p>
+ * <p>Configures {@link EasyPool} to use a MySQL instance.</p>
  *
  * @since 4/26/2020 2:12PM, EST
- * @see DataSourceManager
+ * @see EasyPool
  * @see DataSourceType
  * @author Arif Banai
  */
-public class MySQL extends DataSourceManager {
+public class MySQL extends EasyPool {
 
     /**
-     * <p>Configures the {@link DataSourceManager} for use with {@link Driver}.</p>
+     * <p>Configures the {@link EasyPool} for use with {@link Driver}.</p>
      *    <p>Utilizes {@link DataSourceType} to get MySQL drivers and connection credentials</p>
      *
      * @param host The IP or domain of the host server

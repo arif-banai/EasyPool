@@ -26,22 +26,58 @@ package me.arifbanai.easypool;
  */
 public class Config {
 
-    public boolean usingSqlite;
-    public ConnectionDetails connectionDetails;
+    public String dialect;
+    public String host;
+    public String port;
+    public String schema;
+    public String username;
+    public String password;
 
-    public boolean getUsingSqlite() {
-        return usingSqlite;
+    public String getDialect() {
+        return dialect;
     }
 
-    public void setUsingSqlite(boolean usingSqlite) {
-        this.usingSqlite = usingSqlite;
+    public void setDialect(String dialect) {
+        this.dialect = dialect;
     }
 
-    public ConnectionDetails getConnectionDetails() {
-        return connectionDetails;
+    public String getHost() {
+        return host;
     }
 
-    public void setConnectionDetails(ConnectionDetails connectionDetails) {
-        this.connectionDetails = connectionDetails;
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public String getSchema() {
+        return schema;
+    }
+
+    public void setSchema(String schema) {
+        this.schema = schema;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

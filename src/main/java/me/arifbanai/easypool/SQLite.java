@@ -8,17 +8,17 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * <p>Configures {@link DataSourceManager} to use a SQLite instance.</p>
+ * <p>Configures {@link EasyPool} to use a SQLite instance.</p>
  *
  * @since 4/26/2020 2:12PM, EST
- * @see DataSourceManager
+ * @see EasyPool
  * @see DataSourceType
  * @author Arif Banai
  */
-public class SQLite extends DataSourceManager {
+public class SQLite extends EasyPool {
 
     /**
-     * <p>Configures the {@link DataSourceManager} for use with {@link org.sqlite.JDBC}.</p>
+     * <p>Configures the {@link EasyPool} for use with {@link org.sqlite.JDBC}.</p>
      *    <p>Utilizes {@link DataSourceType} to get SQLite driver class paths and construct the url.</p>
      *
      * @param hostPath The path of the parent directory (parent file)

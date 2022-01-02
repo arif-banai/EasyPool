@@ -4,7 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import me.arifbanai.easypool.enums.DataSourceType;
 
-public class MariaDB extends DataSourceManager{
+public class MariaDB extends EasyPool {
 
 
     /**
